@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons" >
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+      <link rel="stylesheet" href="styles/stylesheet.css"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Poppo - PokemonGoBot GUI</title>
+    </head>
+    <body>
+      <div id="LoginScreen" class="grey lighten-3">
+        <div class="valign-wrapper">
+          <div class="card valign">
+            <div class="card-content">
+              <div class="input-field">
+                <input id="server-address" type="text" class="validate" value="localhost">
+                <label for="server-address">Server Adress</label>
+              </div>
+              <div class="input-field">
+                <input id="server-port" type="text" class="validate" value="8001">
+                <label for="server-port">Port</label>
+              </div>
+              <div class="center">
+                <a id="login" class="waves-effect waves-light btn">Start</a>
+                <div id="login-preload" class="preloader-wrapper small active" style="display:none;">
+                  <div class="spinner-layer spinner-green-only">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div><div class="gap-patch">
+                      <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="map" style="display:none;"></div>
+      <div id="top-badge" style="display:none;">
+          <div class="card" style="">
+            <a href="#" class="dropdown-button waves-effect waves-dark" data-activates='dropdown1'>
+            <div style="padding:5px;">
+              <div id="lvl" style="width:24px;height:24px;display:inline-block;"></div>
+              <span id="username-1" style="display:inline-block;"></span>
+            </div>
+            </a>
+          </div>
+      </div>
+      <ul id='dropdown1' class='dropdown-content'>
+        <li><a href="#profileDisplay" class="modal-trigger">Profile</a></li>
+        <li><a href="#pokebankDisplay" class="modal-trigger">Pokebank</a></li>
+        <li><a href="#logDisplay" class="modal-trigger">Console</a></li>
+        <li><a href="#settingDisplay" class="modal-trigger">Setting</a></li>
+      </ul>
+      <div id="logDisplay" class="modal modal-fixed-footer">
+        <div id="logParent" class="modal-content">
+          <h4>Console</h4>
+          <p id="log"></p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">close</a>
+        </div>
+      </div>
+      <div id="profileDisplay" class="modal ">
+        <div class="modal-content">
+          <h4>Profile</h4>
+          <table class="bordered">
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td><span id="username-2"></span></td>
+          </tr>
+          <tr>
+            <td>Team</td>
+            <td><span id="profile_team_badge"></span><span id="profile_team"></span></td>
+          </tr>
+          <tr>
+            <td>Stardust</td>
+            <td><span id="profile_stardust"></span></td>
+          </tr>
+          <tr>
+            <td>Level</td>
+            <td><span id="profile_level"></span></td>
+          </tr>
+          <tr>
+            <td>Pokebank</td>
+            <td><span id="profile_pokebank"></span></td>
+          </tr>
+          <tr>
+            <td>Items</td>
+            <td><span id="profile_items"></span></td>
+          </tr>
+        </tbody>
+      </table>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">close</a>
+        </div>
+      </div>
+      <div id="pokebankDisplay" class="modal modal-fixed-footer">
+        <div class="modal-content">
+          <table class="border">
+            <thead><tr><th>Picture</th><th>Name</th><th>CP</th><th>IV</th></tr></thead>
+            <tbody id="pokemon_list"></tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">close</a>
+        </div>
+      </div>
+      <div id="settingDisplay" class="modal">
+        <div class="modal-content">
+          <form action="#">
+            <p>Maps</p>
+            <p>
+              <input type="checkbox" id="setting-map-autofollow" checked="" />
+              <label for="setting-map-autofollow">Auto Follow</label>
+            </p>
+            <p>Notification</p>
+            <p>
+              <input type="checkbox" id="setting-noti-lvlup" checked=""/>
+              <label for="setting-noti-lvlup">Level Up</label>
+            </p>
+            <p>
+              <input type="checkbox" id="setting-noti-caught" checked=""/>
+              <label for="setting-noti-caught">Caught Pokemon</label>
+            </p>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">close</a>
+        </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="scripts/progressbar.min.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMZB_Zo029aBahPYLVG7eNV9bMcy5elgM" async defer></script>
+      <script src="scripts/app.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+      <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    </body>
+  </html>

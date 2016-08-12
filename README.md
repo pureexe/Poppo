@@ -1,8 +1,12 @@
 # Poppo
-UI for PokemonGoBot (https://github.com/jabbink/PokemonGoBot)
+UI for PokemonGoBot (https://github.com/jabbink/PokemonGoBot)  
 NOTE: Poppo is a japanese name of Pidgy  
 
 User Interface Avaliable at http://pogo.abb.ink/Poppo/  
+
+##Spacial Thank
+- Original source from [PokemonGoBot](https://github.com/jabbink/PokemonGoBot)
+- Some Resource from [RocketTheme](https://github.com/eruecco87/PokemonGoBot-RocketTheme)
 
 ## Screenshot
 

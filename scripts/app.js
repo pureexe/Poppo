@@ -3,7 +3,8 @@ var settings = {
     caught_pokemon: true,
     next_level: true
   },
-  autofollow: true
+  autofollow: true,
+  monitoringlog: true
 };
 var elements;
 var icons = {
@@ -23,6 +24,7 @@ var pokebank = {};
 var caughtPokemonMarkers = [];
 var gotoMarkers = [];
 var socket;
+var logCount = 0;
 
 function goto(lat, lng){
   socket.emit('goto', {
@@ -231,9 +233,17 @@ function runSocket(){
   socket.on('eggs', function(data){
   });
   socket.on('log', function(data){
-    var span = $('<span class="' + data.type + '">' + data.text + '</span><br>');
-    elements.log.append(span);
-    elements.logParent.scrollTop(elements.logParent.prop("scrollHeight"));
+    if(settings.monitoringlog){
+      var span = $('<span class="' + data.type + '">' + data.text + '</span><br>');
+      logCount++;
+      elements.log.append(span);
+      if(logCount> 100){
+        elements.log.find('span:first').remove();
+        elements.log.find('br:first').remove();
+        logCount = 100;
+      }
+      elements.logParent.scrollTop(elements.logParent.prop("scrollHeight"));
+    }
   });
   socket.on('gotoDone', function(data){
     gotoMarkers[0].setMap(null);
@@ -290,7 +300,16 @@ $(function() {
   });
   $("#setting-noti-caught").change(function(){
     settings.notifications.caught_pokemon = !settings.notifications.caught_pokemon;
-  })
+  });
+  $("#setting-log").change(function(){
+    settings.monitoringlog = !settings.monitoringlog;
+    if(settings.monitoringlog){
+      $("#logDisplayTrigger").show();
+    }else{
+      $("#logDisplayTrigger").hide();
+      elements.log.empty();
+    }
+  });
   if(("Notification" in window) && Notification.permission !== 'granted') {
     Notification.requestPermission(function(){});
   }

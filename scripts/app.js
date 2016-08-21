@@ -9,7 +9,7 @@ var settings = {
 var elements;
 var icons = {
   trainer: 'images/trainer.png',
-  pokemon: function(id){ return 'http://pokeapi.co/media/sprites/pokemon/' + id + '.png'; },
+  pokemon: function(id){ return 'https://www.weebly.com/editor/uploads/6/6/2/8/66286027/custom_themes/748668897894441117/files/pokemon/' + id + '.png'; },
   pokestop: 'images/pokestop.png',
   goto:'images/goto.png'
 };
